@@ -1,4 +1,4 @@
-require("Aether.core.node")
+require("Aether.nodes.node")
 
 ---@class Text: Node
 ---@field public class_name string
