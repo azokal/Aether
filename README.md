@@ -1,2 +1,2 @@
 # Aether
-A full-feature engine made in lua on top of LÖVE.
+A game engine made in lua on top of LÖVE.
