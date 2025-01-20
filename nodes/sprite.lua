@@ -1,4 +1,4 @@
-require("sys.core.node")
+require("Aether.nodes.node")
 
 ---@class Sprite: Node
 ---@field public class_name string

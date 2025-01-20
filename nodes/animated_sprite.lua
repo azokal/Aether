@@ -1,4 +1,4 @@
-require("sys.nodes.sprite")
+require("Aether.nodes.sprite")
 
 ---@class AnimatedSprite: Sprite
 ---@field public class_name string

@@ -1,4 +1,4 @@
-require("sys.nodes.animated_sprite")
+require("Aether.nodes.animated_sprite")
 
 Animation = AnimatedSprite:new { class_name = "Animation", animation_data = nil, current = "", speed = 1 }
 

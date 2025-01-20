@@ -1,4 +1,4 @@
-require("sys.core.mouse")
+require("Aether.core.mouse")
 
 Input = { class_name = "Input", mouse = {}, states = {}, states_pressed = {}, states_released = {} }
 
