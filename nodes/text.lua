@@ -27,7 +27,7 @@ function Text:setText(text)
     self.text:set(text)
 end
 
----Draw the node
+---Draw Text node
 function Text:draw()
     love.graphics.push("all")
     local gposx, gposy = self:getGlobalPosition()

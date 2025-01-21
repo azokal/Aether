@@ -1,15 +1,20 @@
 require("Aether.nodes.node")
 
+--- The Sprite node
 ---@class Sprite: Node
----@field public class_name string
----@field public pivot Vec2
----@field public asset love.Image
----@field public quad love.Quad
----@field public flip_x boolean
----@field public flip_y boolean
----@field public color Color
+---@field public class_name string The class name
+---@field public pivot Vec2 The pivot for the rendering
+---@field public asset love.Image The LÖVE Image data
+---@field public quad love.Quad The LÖVE Quad data
+---@field public flip_x boolean The argument to know if we flip on x
+---@field public flip_y boolean The argument to know if we flip on y
+---@field public color Color The color used for with a blend multiply for the rendering
 Sprite = Node:new { class_name = "Sprite", pivot = nil, asset = nil, quad = nil, flip_x = false, flip_y = false, color = Color:create(1, 1, 1, 1) }
 
+---Init Sprite Node
+---@param path string
+---@param mipmaps boolean | nil
+---@param linear boolean | nil
 function Sprite:init(path, mipmaps, linear)
     mipmaps = mipmaps or true
     linear = linear or true
@@ -20,6 +25,7 @@ function Sprite:init(path, mipmaps, linear)
         self.asset:getHeight())
 end
 
+---Draw Sprite node
 function Sprite:draw()
     love.graphics.push("all")
     local gposx, gposy = self:getGlobalPosition()
