@@ -10,8 +10,10 @@ require("Aether.nodes.node")
 ---@field public color Color
 Sprite = Node:new { class_name = "Sprite", pivot = nil, asset = nil, quad = nil, flip_x = false, flip_y = false, color = Color:create(1, 1, 1, 1) }
 
-function Sprite:init(path, pivot, mipmaps, linear)
-    self.pivot = Vec2:new(pivot)
+function Sprite:init(path, mipmaps, linear)
+    mipmaps = mipmaps or true
+    linear = linear or true
+    self.pivot = Vec2:create(0.5, 0.5)
     self.asset = self.app.resource:loadImage(path, { mipmaps = mipmaps, linear = linear })
     self.quad = love.graphics.newQuad(0, 0, self.asset:getWidth(), self.asset:getHeight(),
         self.asset:getWidth(),
