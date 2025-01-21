@@ -1,13 +1,12 @@
 require("Aether.nodes.node")
 
+---Camera node use to render scene node with the camera's transform
 ---@class Camera: Node
----@field public class_name string
-Camera = Node:new { class_name = "Camera" }
+---@field class_name string The Class name
+Camera = Node:new({ class_name = "Camera" }, nil)
 
-function Camera:update(dt)
-
-end
-
+---Draw all node given with the camera's transform
+---@param nodes Node[] Node to draw
 function Camera:drawNodes(nodes)
     love.graphics.push()
     local gposx, gposy = self:getGlobalPosition()
@@ -47,6 +46,9 @@ function Camera:drawNodes(nodes)
     end
 end
 
+---Convert Screen coordinate to World coordinate
+---@param screen_position Vec2 The Screen position
+---@return Vec2 world_position The World position
 function Camera:convertScreenToWorld(screen_position)
     local gposx, gposy = self:getGlobalPosition()
     local w, h = love.graphics.getDimensions()
@@ -59,6 +61,8 @@ function Camera:convertScreenToWorld(screen_position)
     })
 end
 
+---Get the ratio between the game size and the screen size
+---@return number The scale ratio
 function Camera:getRatioGameScreen()
     local w, h = love.graphics.getDimensions()
     return h / self.app.base_height

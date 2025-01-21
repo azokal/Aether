@@ -1,6 +1,6 @@
 require("Aether.nodes.node")
 
---- The Sprite node
+---The Sprite node can be use to display a LÖVE Image with the node system
 ---@class Sprite: Node
 ---@field public class_name string The class name
 ---@field public pivot Vec2 The pivot for the rendering
@@ -12,9 +12,9 @@ require("Aether.nodes.node")
 Sprite = Node:new { class_name = "Sprite", pivot = nil, asset = nil, quad = nil, flip_x = false, flip_y = false, color = Color:create(1, 1, 1, 1) }
 
 ---Init Sprite Node
----@param path string
----@param mipmaps boolean | nil
----@param linear boolean | nil
+---@param path string The visual's path
+---@param mipmaps boolean|nil Use mipmaps
+---@param linear boolean|nil Use linear filter
 function Sprite:init(path, mipmaps, linear)
     mipmaps = mipmaps or true
     linear = linear or true

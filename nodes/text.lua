@@ -1,6 +1,6 @@
 require("Aether.nodes.node")
 
----The Text Node can be use to render text with the node system
+---The Text node can be use to render text with the node system
 ---@class Text: Node
 ---@field public class_name string The class name
 ---@field public font love.Font LÖVE font data
@@ -9,10 +9,10 @@ require("Aether.nodes.node")
 Text = Node:new { class_name = "Text", font = nil, text = nil, pivot = nil }
 
 ---Init the Text node
----@param path string
----@param text string
----@param size number
----@param filter string | nil
+---@param path string The font's path
+---@param text string The text to display
+---@param size number The font size
+---@param filter string | nil The filter to use for the font rendering
 function Text:init(path, text, size, filter)
     filter = filter or "linear"
     self.font = self.app.resource:loadFont(path, size)
@@ -22,7 +22,7 @@ function Text:init(path, text, size, filter)
 end
 
 ---Update display text
----@param text string
+---@param text string The text to display
 function Text:setText(text)
     self.text:set(text)
 end
