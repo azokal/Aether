@@ -1,17 +1,28 @@
 require("Aether.nodes.sprite")
 
+---The Button node can be use to render button with the node system
 ---@class Button: Sprite
----@field public class_name string
----@field public interactable boolean
----@field public is_hover boolean
----@field public is_pressed boolean
----@field public visual_idle love.Image
----@field public visual_hover love.Image
----@field public visual_exec love.Image
+---@field public class_name string The Class name
+---@field public interactable boolean Is the button interactable?
+---@field public is_hover boolean Is the button hovered?
+---@field public is_pressed boolean Is the button pressed?
+---@field public visual_idle love.Image The LÖVE Image the button at idle state
+---@field public visual_hover love.Image The LÖVE Image the button at hovered state
+---@field public visual_exec love.Image The LÖVE Image the button at exec state
 Button = Sprite:new { class_name = "Button", interactable = true, is_hover = false, is_pressed = false, visual_idle = nil, visual_hover = nil, visual_exec = nil }
 
+---Init Button Node
+---@param path_visual_idle string The idle visual's path
+---@param path_visual_hover string|nil The hover visual's path
+---@param path_visual_exec string|nil The exec visual's path
+---@param mipmaps boolean|nil Use mimaps
+---@param linear boolean|nil Use linear filter
 function Button:init(path_visual_idle, path_visual_hover, path_visual_exec, mipmaps, linear)
-    Sprite.init(self, path_visual_idle, Vec2:create(0.5, 0.5), mipmaps, linear)
+    path_visual_hover = path_visual_hover or path_visual_idle
+    path_visual_exec = path_visual_exec or path_visual_idle
+    mipmaps = mipmaps or true
+    linear = linear or true
+    Sprite.init(self, path_visual_idle, mipmaps, linear)
     self.visual_idle = self.asset
 
     if path_visual_hover == nil then
@@ -26,18 +37,25 @@ function Button:init(path_visual_idle, path_visual_hover, path_visual_exec, mipm
     end
 end
 
+---Placeholder for exec function
 function Button:exec()
 end
 
+---Placeholder for hover function
+---@param dt number The delta time between frame
 function Button:hover(dt)
 end
 
+---Placeholder for when a cursor enter the button
 function Button:onEnter()
 end
 
+---Placeholder for when a cursor exit the button
 function Button:onExit()
 end
 
+---Update the button's node to add the logic
+---@param dt number The delta time between frame
 function Button:update(dt)
     local mx, my = self.app.input.mouse:getPosition()
     local gposx, gposy = self:getGlobalPosition()

@@ -1,23 +1,31 @@
 require("Aether.nodes.node")
 
+---The Sprite node can be use to display a LÖVE Image with the node system
 ---@class Sprite: Node
----@field public class_name string
----@field public pivot Vec2
----@field public asset love.Image
----@field public quad love.Quad
----@field public flip_x boolean
----@field public flip_y boolean
----@field public color Color
+---@field public class_name string The class name
+---@field public pivot Vec2 The pivot for the rendering
+---@field public asset love.Image The LÖVE Image data
+---@field public quad love.Quad The LÖVE Quad data
+---@field public flip_x boolean The argument to know if we flip on x
+---@field public flip_y boolean The argument to know if we flip on y
+---@field public color Color The color used for with a blend multiply for the rendering
 Sprite = Node:new { class_name = "Sprite", pivot = nil, asset = nil, quad = nil, flip_x = false, flip_y = false, color = Color:create(1, 1, 1, 1) }
 
-function Sprite:init(path, pivot, mipmaps, linear)
-    self.pivot = Vec2:new(pivot)
+---Init Sprite Node
+---@param path string The visual's path
+---@param mipmaps boolean|nil Use mipmaps
+---@param linear boolean|nil Use linear filter
+function Sprite:init(path, mipmaps, linear)
+    mipmaps = mipmaps or true
+    linear = linear or true
+    self.pivot = Vec2:create(0.5, 0.5)
     self.asset = self.app.resource:loadImage(path, { mipmaps = mipmaps, linear = linear })
     self.quad = love.graphics.newQuad(0, 0, self.asset:getWidth(), self.asset:getHeight(),
         self.asset:getWidth(),
         self.asset:getHeight())
 end
 
+---Draw Sprite node
 function Sprite:draw()
     love.graphics.push("all")
     local gposx, gposy = self:getGlobalPosition()
