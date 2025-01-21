@@ -8,6 +8,7 @@ require("Aether.nodes.node")
 Text = Node:new { class_name = "Text", font = nil, text = nil, pivot = nil }
 
 function Text:init(path, text, size, filter)
+    filter = filter or "linear"
     self.font = self.app.resource:loadFont(path, size)
     self.font:setFilter(filter, filter)
     self.text = love.graphics.newText(self.font, text)
