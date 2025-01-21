@@ -1,12 +1,18 @@
 require("Aether.nodes.node")
 
+---The Text Node can be use to render text with the node system
 ---@class Text: Node
----@field public class_name string
----@field public font love.Font
----@field public text love.Text
----@field public pivot Vec2
+---@field public class_name string The class name
+---@field public font love.Font LÖVE font data
+---@field public text love.Text LÖVE Text data
+---@field public pivot Vec2 The pivot to be use
 Text = Node:new { class_name = "Text", font = nil, text = nil, pivot = nil }
 
+---Init the Text node
+---@param path string
+---@param text string
+---@param size number
+---@param filter string | nil
 function Text:init(path, text, size, filter)
     filter = filter or "linear"
     self.font = self.app.resource:loadFont(path, size)
@@ -15,10 +21,13 @@ function Text:init(path, text, size, filter)
     self.pivot = Vec2:create(0.5, 0.5)
 end
 
+---Update display text
+---@param text string
 function Text:setText(text)
     self.text:set(text)
 end
 
+---Draw the node
 function Text:draw()
     love.graphics.push("all")
     local gposx, gposy = self:getGlobalPosition()
