@@ -11,8 +11,10 @@ require("Aether.nodes.sprite")
 ---@field public current_timer number
 AnimatedSprite = Sprite:new { class_name = "AnimatedSprite", column = 0, row = 0, max_frame = 0, current_frame = 0, is_playing = false, time_between_frame = 0, current_timer = 0 }
 
-function AnimatedSprite:init(path, nb_column, nb_row, start_frame, max_frame, fps, play, mipmap, linear)
-    Sprite.init(self, path, Vec2:create(0.5, 0.5), mipmap, linear)
+function AnimatedSprite:init(path, nb_column, nb_row, start_frame, max_frame, fps, play, mipmaps, linear)
+    mipmaps = mipmaps or true
+    linear = linear or true
+    Sprite.init(self, path, mipmaps, linear)
     self.column = nb_column
     self.row = nb_row
     self.current_frame = start_frame - 1

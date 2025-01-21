@@ -11,7 +11,11 @@ require("Aether.nodes.sprite")
 Button = Sprite:new { class_name = "Button", interactable = true, is_hover = false, is_pressed = false, visual_idle = nil, visual_hover = nil, visual_exec = nil }
 
 function Button:init(path_visual_idle, path_visual_hover, path_visual_exec, mipmaps, linear)
-    Sprite.init(self, path_visual_idle, Vec2:create(0.5, 0.5), mipmaps, linear)
+    path_visual_hover = path_visual_hover or path_visual_idle
+    path_visual_exec = path_visual_exec or path_visual_idle
+    mipmaps = mipmaps or true
+    linear = linear or true
+    Sprite.init(self, path_visual_idle, mipmaps, linear)
     self.visual_idle = self.asset
 
     if path_visual_hover == nil then
