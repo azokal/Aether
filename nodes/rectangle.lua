@@ -9,11 +9,11 @@ require("Aether.nodes.node")
 ---@field public color Color
 Rectangle = Node:new { class_name = "Rectangle", size = nil, type = "fill", fill_amount = 1, pivot = nil, color = nil }
 
-function Rectangle:init(width, height, type, fill_amount, pivot_x, pivot_y, color)
+function Rectangle:init(width, height, type, fill_amount, color)
     self.size = Vec2:create(width, height)
     self.type = type
     self.fill_amount = fill_amount
-    self.pivot = Vec2:create(pivot_x, pivot_y)
+    self.pivot = Vec2:create(0.5, 0.5)
     self.color = Color:create(color.r, color.g, color.b, color.a)
 end
 
