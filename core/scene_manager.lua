@@ -1,4 +1,4 @@
----The SceneManager have to manipulate scene and define the current one
+---The SceneManager is a Class used to have to manipulate scene and define the current one
 ---@class SceneManager
 ---@field public class_name string The Class Name
 ---@field public scenes { [string]: Scene }|nil All scenes track by the SceneManager
