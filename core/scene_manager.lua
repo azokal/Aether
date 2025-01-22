@@ -6,8 +6,8 @@
 SceneManager = { class_name = "SceneManager", scenes = nil, current_scene = "" }
 
 ---SceneManager constructor
----@param o table Model used for the copy
----@return SceneManager o SceneManager instance
+---@param o table Table model used for the copy
+---@return SceneManager o The instanciate SceneManager
 function SceneManager:new(o)
     o = o or {}
     o.scenes = {}
