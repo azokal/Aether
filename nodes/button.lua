@@ -13,10 +13,10 @@ Button = Sprite:new { class_name = "Button", interactable = true, is_hover = fal
 
 ---Init Button Node
 ---@param path_visual_idle string The idle visual's path
----@param path_visual_hover string|nil The hover visual's path
----@param path_visual_exec string|nil The exec visual's path
----@param mipmaps boolean|nil Use mimaps
----@param linear boolean|nil Use linear filter
+---@param path_visual_hover string? The hover visual's path
+---@param path_visual_exec string? The exec visual's path
+---@param mipmaps boolean? Use mimaps
+---@param linear boolean? Use linear filter
 function Button:init(path_visual_idle, path_visual_hover, path_visual_exec, mipmaps, linear)
     path_visual_hover = path_visual_hover or path_visual_idle
     path_visual_exec = path_visual_exec or path_visual_idle

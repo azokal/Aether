@@ -12,7 +12,7 @@ Text = Node:new { class_name = "Text", font = nil, text = nil, pivot = nil }
 ---@param path string The font's path
 ---@param text string The text to display
 ---@param size number The font size
----@param filter string | nil The filter to use for the font rendering
+---@param filter string? The filter to use for the font rendering
 function Text:init(path, text, size, filter)
     filter = filter or "linear"
     self.font = self.app.resource:loadFont(path, size)

@@ -7,11 +7,11 @@ Layer = { BACKGROUND = 0, Layer1 = 1, Layer2 = 2, Layer3 = 3, Layer4 = 4, Layer5
 ---@class Node
 ---@field public class_name string The Class' name
 ---@field public name string The Node's name
----@field public transform Transform|nil The Node's transform
----@field public parent Node|nil The Node's parent
----@field public children Node[]|nil The Node's children
+---@field public transform Transform? The Node's transform
+---@field public parent Node? The Node's parent
+---@field public children Node[]? The Node's children
 ---@field public active boolean The Node's active state
----@field public app Application|nil The Aether's application instance
+---@field public app Application? The Aether's application instance
 ---@field public destroyed boolean The Node's destroy state
 ---@field public layer Layer The Node's render layer
 ---@field public zindex number The Node's z-index
@@ -31,8 +31,8 @@ Node = {
 }
 
 ---Node constructor
----@param o table|nil The node's model to make a copy
----@param app Application|nil The Aether's application instance
+---@param o table? The node's model to make a copy
+---@param app Application? The Aether's application instance
 ---@return Node o The instanciate node
 function Node:new(o, app)
     o = o or {}

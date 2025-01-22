@@ -5,7 +5,8 @@
 Resource = { class_name = "Resource", cache = {} }
 
 ---Resource constructor
----@param o table|nil Table model used for the copy
+---@param o table? Table model used for the copy
+---@return Resource o The Resource instance
 function Resource:new(o)
     o = o or {}
     setmetatable(o, self)
@@ -16,7 +17,7 @@ end
 ---Load Image
 ---@param path string The image path
 ---@param settings table The LÖVE setting for newImage
----@return love.Image|nil image The loaded asset
+---@return love.Image? image The loaded asset
 function Resource:loadImage(path, settings)
     local info = love.filesystem.getInfo(path)
     if info == nil then
@@ -32,7 +33,7 @@ end
 ---Load font
 ---@param path string The font path
 ---@param size number The font size. It's used to create a key for the cache.
----@return love.Font|nil image The loaded asset
+---@return love.Font? image The loaded asset
 function Resource:loadFont(path, size)
     local info = love.filesystem.getInfo(path)
     if info == nil then

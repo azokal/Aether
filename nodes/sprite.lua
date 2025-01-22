@@ -13,8 +13,8 @@ Sprite = Node:new { class_name = "Sprite", pivot = nil, asset = nil, quad = nil,
 
 ---Init Sprite Node
 ---@param path string The visual's path
----@param mipmaps boolean|nil Use mipmaps
----@param linear boolean|nil Use linear filter
+---@param mipmaps boolean? Use mipmaps
+---@param linear boolean? Use linear filter
 function Sprite:init(path, mipmaps, linear)
     mipmaps = mipmaps or true
     linear = linear or true

@@ -1,14 +1,14 @@
 ---The Scene is used to order, manipulate and draw nodes
 ---@class Scene
 ---@field public class_name string The Class name
----@field public nodes Node[]|nil The nodes present in the scene
----@field public app Application|nil The Aether's Application instance
----@field public to_destroy_node Node[]|nil The nodes to destroy
+---@field public nodes Node[]? The nodes present in the scene
+---@field public app Application? The Aether's Application instance
+---@field public to_destroy_node Node[]? The nodes to destroy
 Scene = { class_name = "Scene", nodes = nil, app = nil, to_destroy_node = nil }
 
 ---Scene constructor
----@param o table|nil Table model used for the copy
----@param app Application|nil The Aether's application instance
+---@param o table? Table model used for the copy
+---@param app Application? The Aether's application instance
 ---@return Scene scene The instanciate Scene
 function Scene:new(o, app)
     o = o or {}
@@ -63,7 +63,7 @@ end
 
 ---Find a node with a path in the Scene node's tree
 ---@param path string The Node path. For example: "/node1/node2" will return the Node named node2, child of node1 who is at the root
----@return Node[]|nil nodes Founded nodes
+---@return Node[]? nodes Founded nodes
 function Scene:findNode(path)
     local token = path:split("/")
     local base_nodes = {}
