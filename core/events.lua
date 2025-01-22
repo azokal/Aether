@@ -1,4 +1,4 @@
-Events = { class_name = "Event", data = nil }
+Events = { class_name = "Events", data = nil }
 
 function Events:new(o)
     o = o or {}
