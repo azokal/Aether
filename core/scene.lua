@@ -1,4 +1,4 @@
----The Scene is used to order, manipulate and draw nodes
+---The Scene is a Class used to order, manipulate and draw nodes
 ---@class Scene
 ---@field public class_name string The Class name
 ---@field public nodes Node[]? The nodes present in the scene

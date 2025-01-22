@@ -1,4 +1,4 @@
----Mouse class used to encapsulate LÖVE mouse function
+---Mouse is a Class used to encapsulate LÖVE mouse function
 ---@class Mouse
 ---@field public class_name string The class name
 Mouse = { class_name = "Mouse" }
