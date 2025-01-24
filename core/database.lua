@@ -23,15 +23,15 @@ end
 ---Load a new file in Database
 ---@param input string Prefix for the key
 ---@param path string File's path to load
----@param data table Append new data to his data
+---@param data table? Append new data to his data
 function Database:load(input, path, data)
-    data = data or self.datas
+    local d = data or self.datas
 
-    if data[input] == nil then
-        data[input] = {}
+    if d[input] == nil then
+        d[input] = {}
     end
     require(path)
-    config(data[input], self)
+    config(d[input], self)
 end
 
 ---Get data from specified datapath
