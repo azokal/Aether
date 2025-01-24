@@ -6,9 +6,9 @@ require("Aether.nodes.sprite")
 ---@field public interactable boolean Is the button interactable?
 ---@field public is_hover boolean Is the button hovered?
 ---@field public is_pressed boolean Is the button pressed?
----@field public visual_idle love.Image The LÖVE Image the button at idle state
----@field public visual_hover love.Image The LÖVE Image the button at hovered state
----@field public visual_exec love.Image The LÖVE Image the button at exec state
+---@field public visual_idle love.Image? The LÖVE Image the button at idle state
+---@field public visual_hover love.Image? The LÖVE Image the button at hovered state
+---@field public visual_exec love.Image? The LÖVE Image the button at exec state
 Button = Sprite:new { class_name = "Button", interactable = true, is_hover = false, is_pressed = false, visual_idle = nil, visual_hover = nil, visual_exec = nil }
 
 ---Init Button Node
@@ -59,6 +59,7 @@ end
 function Button:update(dt)
     local mx, my = self.app.input.mouse:getPosition()
     local gposx, gposy = self:getGlobalPosition()
+    ---@type Camera[]
     local cameras = self.app.scene_manager:getCurrentScene():findNodesOfType("Camera")
     if #cameras > 0 then
         local wpos = Vec2:create(mx, my)

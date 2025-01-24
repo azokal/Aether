@@ -4,8 +4,8 @@ require("Aether.nodes.node")
 ---@class Sprite: Node
 ---@field public class_name string The class name
 ---@field public pivot Vec2 The pivot for the rendering
----@field public asset love.Image The LÖVE Image data
----@field public quad love.Quad The LÖVE Quad data
+---@field public asset love.Image? The LÖVE Image data
+---@field public quad love.Quad? The LÖVE Quad data
 ---@field public flip_x boolean The argument to know if we flip on x
 ---@field public flip_y boolean The argument to know if we flip on y
 ---@field public color Color The color used for with a blend multiply for the rendering

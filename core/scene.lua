@@ -169,6 +169,7 @@ end
 
 ---Draw all the nodes track by the Scene
 function Scene:draw()
+    ---@type Camera[]
     local cameras = self:findNodesOfType("Camera")
 
     if #cameras == 0 then
