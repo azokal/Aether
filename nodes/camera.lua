@@ -5,7 +5,7 @@ require("Aether.nodes.node")
 ---@field class_name string The Class name
 Camera = Node:new({ class_name = "Camera" })
 
----Draw all node given with the camera's transform
+---Draw all nodes relative to the camera transform
 ---@param nodes Node[] Node to draw
 function Camera:drawNodes(nodes)
     love.graphics.push()
