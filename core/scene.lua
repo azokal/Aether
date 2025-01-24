@@ -1,9 +1,15 @@
+---The Scene is a Class used to order, manipulate and draw nodes
 ---@class Scene
----@field public class_name string
----@field public nodes table[Node]
----@field public app Application
+---@field public class_name string The Class name
+---@field public nodes Node[]? The nodes present in the scene
+---@field public app Application? The Aether's Application instance
+---@field public to_destroy_node Node[]? The nodes to destroy
 Scene = { class_name = "Scene", nodes = nil, app = nil, to_destroy_node = nil }
 
+---Scene constructor
+---@param o table? Table model used for the copy
+---@param app Application? The Aether's application instance
+---@return Scene scene The instanciate Scene
 function Scene:new(o, app)
     o = o or {}
     o.nodes = {}
@@ -14,6 +20,8 @@ function Scene:new(o, app)
     return o
 end
 
+---Add Node to the scene
+---@param node Node The added Node
 function Scene:addNode(node)
     local found, _ = table.contains(self.nodes, node)
     if not found then
@@ -24,6 +32,8 @@ function Scene:addNode(node)
     end
 end
 
+---Remove Node from the scene
+---@param node Node The Node to remove
 function Scene:removeNode(node)
     for i = 1, #(self.nodes), 1 do
         if self.nodes[i] == node then
@@ -36,6 +46,7 @@ function Scene:removeNode(node)
     end
 end
 
+---@private
 local function recFindNode(token, nodes)
     local head = table.remove(token, 1)
     for i = 1, #nodes do
@@ -50,6 +61,9 @@ local function recFindNode(token, nodes)
     return nil
 end
 
+---Find a node with a path in the Scene node's tree
+---@param path string The Node path. For example: "/node1/node2" will return the Node named node2, child of node1 who is at the root
+---@return Node[]? nodes Founded nodes
 function Scene:findNode(path)
     local token = path:split("/")
     local base_nodes = {}
@@ -66,6 +80,8 @@ function Scene:findNode(path)
     return recFindNode(token, base_nodes)
 end
 
+---Update all the nodes track by the Scene
+---@param deltaTime number The delta time between two frame
 function Scene:update(deltaTime)
     for i = 1, #(self.nodes) do
         if self.nodes[i].active == true and self.nodes[i].destroyed == false then
@@ -102,6 +118,9 @@ function Scene:update(deltaTime)
     -- end
 end
 
+---Find All nodes by the class name
+---@param type string the class name to find
+---@return Node[] nodes The nodes found
 function Scene:findNodesOfType(type)
     local base_nodes = {}
     for i = 1, #(self.nodes) do
@@ -112,6 +131,8 @@ function Scene:findNodesOfType(type)
     return base_nodes
 end
 
+---Find all node at the root of the tree
+---@return Node[] nodes The nodes found
 function Scene:findRootNodes()
     local base_nodes = {}
     for i = 1, #(self.nodes) do
@@ -122,7 +143,9 @@ function Scene:findRootNodes()
     return base_nodes
 end
 
-function Scene:getNodeOrderByOrder()
+---Get All Nodes order by the rendering layer
+---@return Node[] nodes The nodes found
+function Scene:getNodeOrderByLayer()
     local orderNodeByLayer = {}
     for i = 1, #(self.nodes), 1 do
         if orderNodeByLayer[self.nodes[i].layer] == nil then
@@ -144,7 +167,9 @@ function Scene:getNodeOrderByOrder()
     return orderNodeByLayer
 end
 
+---Draw all the nodes track by the Scene
 function Scene:draw()
+    ---@type Camera[]
     local cameras = self:findNodesOfType("Camera")
 
     if #cameras == 0 then
@@ -154,7 +179,7 @@ function Scene:draw()
             end
         end
     else
-        local orderNodeByLayer = self:getNodeOrderByOrder()
+        local orderNodeByLayer = self:getNodeOrderByLayer()
 
         for i = 1, #cameras, 1 do
             cameras[1]:drawNodes(orderNodeByLayer)
@@ -162,6 +187,7 @@ function Scene:draw()
     end
 end
 
+---Init Scene
 function Scene:init()
     app.events:reset()
 end

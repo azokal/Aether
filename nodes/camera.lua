@@ -3,7 +3,7 @@ require("Aether.nodes.node")
 ---Camera node use to render scene node with the camera's transform
 ---@class Camera: Node
 ---@field class_name string The Class name
-Camera = Node:new({ class_name = "Camera" }, nil)
+Camera = Node:new({ class_name = "Camera" })
 
 ---Draw all node given with the camera's transform
 ---@param nodes Node[] Node to draw
