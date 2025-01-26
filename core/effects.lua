@@ -39,10 +39,23 @@ end
 
 ---Get a Effect by his class name
 ---@param class_name string The class name
+---@return Effect value Effect found
 function Effects:get(class_name)
     local ret = {}
     for key, value in pairs(self.datas) do
         if value.class_name == class_name then
+            table.insert(ret, value)
+        end
+    end
+    return ret
+end
+
+---Get all visible Effect
+---@return Effect[] values Effects found
+function Effects:getAllVisible()
+    local ret = {}
+    for key, value in pairs(self.datas) do
+        if value.visible == true then
             table.insert(ret, value)
         end
     end
