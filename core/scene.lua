@@ -1,20 +1,19 @@
+Aether = Aether or require("Aether.Aether")
+
 ---The Scene is a Class used to order, manipulate and draw nodes
 ---@class Scene
 ---@field public class_name string The Class name
 ---@field public nodes Node[]? The nodes present in the scene
----@field public app Application? The Aether's Application instance
 ---@field public to_destroy_node Node[]? The nodes to destroy
-Scene = { class_name = "Scene", nodes = nil, app = nil, to_destroy_node = nil }
+Scene = { class_name = "Scene", nodes = nil, to_destroy_node = nil }
 
 ---Scene constructor
 ---@param o table? Table model used for the copy
----@param app Application? The Aether's application instance
 ---@return Scene scene The instanciate Scene
-function Scene:new(o, app)
+function Scene:new(o)
     o = o or {}
     o.nodes = {}
     o.to_destroy_node = {}
-    o.app = app
     setmetatable(o, self)
     self.__index = self
     return o
@@ -189,5 +188,7 @@ end
 
 ---Init Scene
 function Scene:init()
-    app.events:reset()
+    Aether.events:reset()
 end
+
+return Scene

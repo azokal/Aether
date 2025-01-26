@@ -1,3 +1,4 @@
+Aether = Aether or require("Aether.Aether")
 require("Aether.nodes.node")
 
 ---Camera node use to render scene node with the camera's transform
@@ -65,5 +66,7 @@ end
 ---@return number The scale ratio
 function Camera:getRatioGameScreen()
     local w, h = love.graphics.getDimensions()
-    return h / self.app.base_height
+    return h / Aether.base_height
 end
+
+return Camera

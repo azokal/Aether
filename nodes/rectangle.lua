@@ -43,3 +43,5 @@ function Rectangle:draw()
     love.graphics.rectangle(self.type, 0, 0, self.size.x * self.fill_amount, self.size.y)
     love.graphics.pop()
 end
+
+return Rectangle

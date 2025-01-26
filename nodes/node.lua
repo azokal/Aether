@@ -11,7 +11,6 @@ Layer = { BACKGROUND = 0, Layer1 = 1, Layer2 = 2, Layer3 = 3, Layer4 = 4, Layer5
 ---@field public parent Node? The Node's parent
 ---@field public children Node[]? The Node's children
 ---@field public active boolean The Node's active state
----@field public app Application? The Aether's application instance
 ---@field public destroyed boolean The Node's destroy state
 ---@field public layer Layer The Node's render layer
 ---@field public zindex number The Node's z-index
@@ -22,7 +21,6 @@ Node = {
     parent = nil,
     children = nil,
     active = true,
-    app = nil,
     destroyed = false,
     time_destroyed = 0,
     layer =
@@ -32,14 +30,12 @@ Node = {
 
 ---Node constructor
 ---@param o table? The node's model to make a copy
----@param app Application? The Aether's application instance
 ---@return Node o The instanciate node
-function Node:new(o, app)
+function Node:new(o)
     o = o or {}
     o.name = "node" .. os.clock()
     o.transform = Transform:new()
     o.children = {}
-    o.app = app
     setmetatable(o, self)
     self.__index = self
     return o
@@ -222,7 +218,7 @@ end
 function Node:destroy()
     self:setParent(nil)
     self.destroyed = true
-    self.app.events:removeAll(self)
+    Aether.events:removeAll(self)
 end
 
 ---Placeholder function to update the node in child
@@ -234,3 +230,5 @@ end
 ---Placeholder function to draw the node in child
 function Node:draw()
 end
+
+return Node

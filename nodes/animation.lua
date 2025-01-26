@@ -38,3 +38,5 @@ function Animation:update(dt)
         end
     end
 end
+
+return Animation

@@ -45,3 +45,5 @@ function Resource:loadFont(path, size)
     end
     return self.cache[path .. tostring(size)]
 end
+
+return Resource

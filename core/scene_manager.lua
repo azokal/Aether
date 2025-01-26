@@ -35,3 +35,5 @@ end
 function SceneManager:getCurrentScene()
     return self.scenes[self.current_scene]
 end
+
+return SceneManager

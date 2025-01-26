@@ -46,3 +46,5 @@ end
 function Effect:exec(me, channel, args)
     return nil
 end
+
+return Effect

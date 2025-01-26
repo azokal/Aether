@@ -73,3 +73,5 @@ function Input:changeState(id, value)
         self.states_released[id] = true
     end
 end
+
+return Input

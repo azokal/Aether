@@ -1,3 +1,4 @@
+Aether = Aether or require("Aether.Aether")
 require("Aether.nodes.node")
 
 ---The Sprite node can be use to display a LÖVE Image with the node system
@@ -19,7 +20,7 @@ function Sprite:init(path, mipmaps, linear)
     mipmaps = mipmaps or true
     linear = linear or true
     self.pivot = Vec2:create(0.5, 0.5)
-    self.asset = self.app.resource:loadImage(path, { mipmaps = mipmaps, linear = linear })
+    self.asset = Aether.resource:loadImage(path, { mipmaps = mipmaps, linear = linear })
     self.quad = love.graphics.newQuad(0, 0, self.asset:getWidth(), self.asset:getHeight(),
         self.asset:getWidth(),
         self.asset:getHeight())
@@ -51,3 +52,5 @@ function Sprite:draw()
     love.graphics.draw(self.asset, self.quad)
     love.graphics.pop()
 end
+
+return Sprite

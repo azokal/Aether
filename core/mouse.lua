@@ -43,3 +43,5 @@ end
 function Mouse:isConfined()
     return love.mouse.isGrabbed()
 end
+
+return Mouse

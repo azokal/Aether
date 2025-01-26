@@ -88,3 +88,5 @@ end
 function Events:reset()
     self.data = {}
 end
+
+return Events

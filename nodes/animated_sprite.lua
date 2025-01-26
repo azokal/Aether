@@ -73,3 +73,5 @@ function AnimatedSprite:update(dt)
     end
     self.current_timer = self.current_timer + dt
 end
+
+return AnimatedSprite

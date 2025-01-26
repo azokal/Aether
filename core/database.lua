@@ -36,7 +36,7 @@ end
 
 ---Get data from specified datapath
 ---@param datapath string Datapath with "." separator
----@return table data The specified data
+---@return any data The specified data
 function Database:get(datapath)
     ---@type table
     local ret = self.datas
@@ -46,3 +46,5 @@ function Database:get(datapath)
     end
     return ret
 end
+
+return Database

@@ -64,3 +64,5 @@ function Effects:exec(me, channel, arg)
     end
     return ret
 end
+
+return Effects
