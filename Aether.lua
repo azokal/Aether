@@ -37,8 +37,6 @@ end
 ---@param h number The base resolution's height
 function Aether:load(w, h)
     Aether:init(w, h)
-    love.graphics.setDefaultFilter("nearest", "nearest")
-    self.input.mouse:setVisual("assets/cursor/default-cursor.png")
     if Game.load ~= nil then
         Game:load()
     end
