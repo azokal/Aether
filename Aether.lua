@@ -84,7 +84,6 @@ function love.wheelmoved(x, y)
     end
 end
 
--- Increase the size of the rectangle every frame.
 function love.update(dt)
     Aether.scene_manager:getCurrentScene():update(dt)
     Aether.input:update()
@@ -94,7 +93,6 @@ function love.update(dt)
     end
 end
 
--- Draw a coloured rectangle.
 function love.draw()
     Aether.scene_manager:getCurrentScene():draw()
     love.graphics.print(tostring(1 / Aether.deltaTime), 10, 10)
