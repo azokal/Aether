@@ -63,10 +63,23 @@ function Camera:convertScreenToWorld(screen_position)
 end
 
 ---Get the ratio between the game size and the screen size
----@return number The scale ratio
+---@return number ratio The scale ratio
 function Camera:getRatioGameScreen()
     local w, h = love.graphics.getDimensions()
     return h / Aether.base_height
+end
+
+---Get the screen's ratio
+---@return number ratio The screen's ratio
+function Camera:getScreenRatio()
+    local w, h = love.graphics.getDimensions()
+    return w / h
+end
+
+---Get the game screen's ratio
+---@return number ratio The game screen's ratio
+function Camera:getGameScreenRatio()
+    return Aether.base_width / Aether.base_height
 end
 
 return Camera
