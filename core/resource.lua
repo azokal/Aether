@@ -46,4 +46,20 @@ function Resource:loadFont(path, size)
     return self.cache[path .. tostring(size)]
 end
 
+---Load Audio
+---@param path string The audio path
+---@param settings love.SourceType The LÖVE setting for newSource
+---@return love.Source? image The loaded asset
+function Resource:loadAudio(path, settings)
+    local info = love.filesystem.getInfo(path)
+    if info == nil then
+        print("Resource: Can't find asset: " .. path)
+        return nil
+    end
+    if self.cache[path] == nil then
+        self.cache[path] = love.audio.newSource(path, settings)
+    end
+    return self.cache[path]
+end
+
 return Resource
