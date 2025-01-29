@@ -93,7 +93,6 @@ end
 
 function love.draw()
     Aether.scene_manager:getCurrentScene():draw()
-    love.graphics.print(tostring(1 / Aether.deltaTime), 10, 10)
     if Game.draw ~= nil then
         Game:draw()
     end

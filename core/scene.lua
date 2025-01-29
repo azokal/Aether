@@ -188,6 +188,8 @@ end
 
 ---Init Scene
 function Scene:init()
+    self.nodes = {}
+    self.to_destroy_node = {}
     Aether.events:reset()
 end
 
