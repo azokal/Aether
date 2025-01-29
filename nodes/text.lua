@@ -30,12 +30,12 @@ end
 
 ---Draw Text node
 function Text:draw()
+    ---@type Camera[]
+    local cameras = Aether.scene_manager:getCurrentScene():findNodesOfType("Camera")
     love.graphics.push("all")
     local gposx, gposy = self:getGlobalPosition()
     local sx, sy = self:getGlobalScale()
     local angle = self:getGlobalRotation()
-    ---@type Camera[]
-    local cameras = Aether.scene_manager:getCurrentScene():findNodesOfType("Camera")
     local ratio = cameras[1]:getRatioGameScreen()
     --TODO: Check pivot stuff for other position than 0.5 0.5
     local offset = Vec2:create(self.text:getWidth() * self.pivot.x, self.text:getHeight() * self.pivot.y)
@@ -47,7 +47,7 @@ function Text:draw()
     love.graphics.translate(-(offset.x), -(offset.y))
     local screenX, screenY = love.graphics.transformPoint(0, 0)
     love.graphics.translate(-math.fmod(screenX, 1) / ratio, -math.fmod(screenY, 1) / ratio)
-    love.graphics.setFont(self.font)
+    --love.graphics.setFont(self.font)
     love.graphics.draw(self.text, 0, 0)
     love.graphics.pop()
 end

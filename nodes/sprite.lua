@@ -29,13 +29,14 @@ end
 ---Draw Sprite node
 function Sprite:draw()
     love.graphics.push("all")
+    --local cameras = Aether.scene_manager:getCurrentScene():findNodesOfType("Camera")
     local gposx, gposy = self:getGlobalPosition()
     local sx, sy = self:getGlobalScale()
     local _, _, qw, qh = self.quad:getViewport()
     --TODO: Check pivot stuff for other position than 0.5 0.5
     local offset = Vec2:create(qw * self.pivot.x, qh * self.pivot.y)
     love.graphics.setColor(self.color.r, self.color.g, self.color.b, self.color.a)
-    --offset = offset:rotate(angle)
+    -- offset = offset:rotate(angle)
 
     if self.flip_x then
         sx = sx * -1
@@ -49,6 +50,8 @@ function Sprite:draw()
         self:getGlobalRotation() * math.pi / 180,
         sx, sy))
     love.graphics.translate(-offset.x, -offset.y)
+    --cameras[1]:addToBatch(self.asset, self.quad, Vec2:create(gposx, gposy), self:getGlobalRotation(), Vec2:create(sx, sy),
+    --    Vec2:create(offset.x, offset.y), self.color)
     love.graphics.draw(self.asset, self.quad)
     love.graphics.pop()
 end
