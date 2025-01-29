@@ -1,14 +1,16 @@
+Aether = Aether or require("Aether.Aether")
 require("Aether.nodes.node")
 
+---Camera node use to render scene node with the camera's transform
 ---@class Camera: Node
----@field public class_name string
-Camera = Node:new { class_name = "Camera" }
+---@field class_name string The Class name
+---@field batchs love.SpriteBatch[]? The spriteBatch storage
+Camera = Node:new({ class_name = "Camera", batchs = nil })
 
-function Camera:update(dt)
-
-end
-
+---Draw all nodes relative to the camera transform
+---@param nodes Node[] Node to draw
 function Camera:drawNodes(nodes)
+    --self:resetBatchs()
     love.graphics.push()
     local gposx, gposy = self:getGlobalPosition()
     local angle = self:getGlobalRotation()
@@ -18,7 +20,6 @@ function Camera:drawNodes(nodes)
     love.graphics.scale(sx * ratio, sy * ratio)
     love.graphics.rotate(-(angle * math.pi / 180))
     local offset = Vec2:create((w / (sx * ratio)) / 2, (h / (sy * ratio)) / 2)
-
     offset = offset:rotate(angle)
     love.graphics.translate(-gposx + offset.x, -gposy + offset.y)
 
@@ -31,7 +32,7 @@ function Camera:drawNodes(nodes)
             end
         end
     end
-
+    --self:drawAllBatchs()
     love.graphics.pop()
 
     if nodes[Layer.UI] ~= nil then
@@ -43,10 +44,14 @@ function Camera:drawNodes(nodes)
                 nodes[Layer.UI][i]:draw()
             end
         end
+        --self:drawAllBatchs()
         love.graphics.pop()
     end
 end
 
+---Convert Screen coordinate to World coordinate
+---@param screen_position Vec2 The Screen position
+---@return Vec2 world_position The World position
 function Camera:convertScreenToWorld(screen_position)
     local gposx, gposy = self:getGlobalPosition()
     local w, h = love.graphics.getDimensions()
@@ -59,7 +64,47 @@ function Camera:convertScreenToWorld(screen_position)
     })
 end
 
+---Get the ratio between the game size and the screen size
+---@return number ratio The scale ratio
 function Camera:getRatioGameScreen()
     local w, h = love.graphics.getDimensions()
-    return h / self.app.base_height
+    return h / Aether.base_height
 end
+
+---Get the screen's ratio
+---@return number ratio The screen's ratio
+function Camera:getScreenRatio()
+    local w, h = love.graphics.getDimensions()
+    return w / h
+end
+
+---Get the game screen's ratio
+---@return number ratio The game screen's ratio
+function Camera:getGameScreenRatio()
+    return Aether.base_width / Aether.base_height
+end
+
+-- function Camera:resetBatchs()
+--     self.batchs = self.batchs or {}
+--     for key, value in pairs(self.batchs) do
+--         value:clear()
+--     end
+-- end
+
+-- function Camera:addToBatch(image, quad, position, rotation, scale, offset, color)
+--     if self.batchs[image] == nil then
+--         self.batchs[image] = love.graphics.newSpriteBatch(image)
+--     end
+--     self.batchs[image]:setColor(color.r, color.g, color.b, color.a)
+--     self.batchs[image]:
+--         add(quad, position.x, position.y, rotation * math.pi / 180, scale.x, scale.y, offset.x, offset.y)
+-- end
+
+-- function Camera:drawAllBatchs()
+--     for key, value in pairs(self.batchs) do
+--         love.graphics.draw(value)
+--     end
+--     self:resetBatchs()
+-- end
+
+return Camera

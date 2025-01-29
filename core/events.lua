@@ -1,5 +1,12 @@
-Events = { class_name = "Event", data = nil }
+---Events is a observer design pattern Class ready to use
+---@class Events
+---@field public class_name string The class name
+---@field public data table? Store the different subscribers by channel
+Events = { class_name = "Events", data = nil }
 
+---Events constructor
+---@param o table? Table model used for the copy
+---@return Events events The Events instance
 function Events:new(o)
     o = o or {}
     o.data = {}
@@ -8,6 +15,10 @@ function Events:new(o)
     return o
 end
 
+---Listen to a channel
+---@param channel integer Channel to subscribe
+---@param entity table Entity who subscribe
+---@param func function Function to call when invoke. The must take a table as argument
 function Events:listen(channel, entity, func)
     if self.data[channel] == nil then
         self.data[channel] = {}
@@ -18,6 +29,9 @@ function Events:listen(channel, entity, func)
     table.insert(self.data[channel][entity], func)
 end
 
+---Invoke a channel
+---@param channel integer Channel to invoke
+---@param args table Arguments for the function
 function Events:invoke(channel, args)
     if self.data[channel] == nil then
         return
@@ -29,6 +43,10 @@ function Events:invoke(channel, args)
     end
 end
 
+---Remove a function from a entity in the channel
+---@param channel integer Subscribed channel
+---@param entity table Subscribed Entity
+---@param func function Function to remove
 function Events:deafen(channel, entity, func)
     if self.data[channel] == nil then
         return
@@ -42,6 +60,9 @@ function Events:deafen(channel, entity, func)
     end
 end
 
+---Remove the entity from a chennel
+---@param channel integer Subscribed channel
+---@param entity table Entity to remove
 function Events:remove(channel, entity)
     if self.data[channel] == nil then
         return
@@ -52,6 +73,8 @@ function Events:remove(channel, entity)
     end
 end
 
+---Remove a entity from all channel
+---@param entity table Entity to remove
 function Events:removeAll(entity)
     for key, value in pairs(self.data) do
         local found, index = table.contains(value, entity)
@@ -61,6 +84,9 @@ function Events:removeAll(entity)
     end
 end
 
+---Reset the Class' state
 function Events:reset()
     self.data = {}
 end
+
+return Events
